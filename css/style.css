@@ -242,6 +242,15 @@ img{max-width:100%;}
 	display:block;
 	max-width:100%;
 }
+
+.span_1_of_2,
+.span_2_of_2 {
+	float: left;
+	width: 49%;
+}
+
+.span_2_of_2 { float: right; }
+
 .button{
 	margin-top:15px;;
 }
@@ -536,7 +545,7 @@ img{max-width:100%;}
 	color: #012231;
 	text-transform: uppercase;
 }
-.contact-form input[type="text"],.contact-form textarea{
+.contact-form input[type="text"],.contact-form textarea {
 		   padding: 8px;
 			display: block;
 			width: 98%;
@@ -552,6 +561,19 @@ img{max-width:100%;}
 		resize:none;
 		height:120px;		
 }
+
+.contact-form select {
+	padding: 8px;
+	display: block;
+	border: none;
+	outline: none;
+	color: #464646;
+	font-size:1em;
+	font-family: Arial, Helvetica, sans-serif;
+	border: 1px solid rgba(85, 85, 85, 0.19);
+	width: 100%;
+}
+
 .mybutton{
 	font-family: 'ambleregular';
 	background:#232322;

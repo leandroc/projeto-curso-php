@@ -1,8 +1,12 @@
-<?php include 'top.php'; ?>
+<?php 
+session_start();
+include 'top.php';
+?>
 
 	<div class="main">
 		<div class="contact">
 			<div class="wrap">
+
 				<!---start-contact---->
 				<div class="section group">
 					<div class="col span_1_of_3">
@@ -28,7 +32,20 @@
 						<div class="contact-form">
 							<h3>Contact Us</h3>
 
-							<form method="post" action="contact-post.html">
+						<?php
+							// veriica se 'enviado' existe na sessão
+							if( isset( $_SESSION['enviado'] ) ) {
+								// se foi enviado
+								if( $_SESSION['enviado'] ) { ?>
+									<h1> FOI ENVIADO </h1>
+							<?php } else { ?>
+									<h1> NAO FOI ENVIADO </h1>
+							<?php }
+								// remove 'enviado da sessão'
+								unset( $_SESSION['enviado'] );
+							}
+						?>
+							<form method="post" action="lib/actions/contact.php">
 								<div>
 									<span><label>NAME</label></span>
 									<span><input name="userName" type="text" class="textbox" /></span>
@@ -37,6 +54,55 @@
 								<div>
 									<span><label>E-MAIL</label></span>
 									<span><input name="userEmail" type="text" class="textbox" /></span>
+								</div>
+								
+								<div>
+							    	<span><label>SEXO</label></span>
+							    	<span>
+							    		<label id="userMasc">
+								    		<input id="userMasc" type="radio" name="userSex" value="Masculino" required="required"/>
+								    		Masculino
+							    		</label>
+
+							    		<label for="userFem">
+								    		<input id="userFem" type="radio" name="userSex" value="Feminino"/>
+								    		Feminino
+							    		</label>
+							    	</span>
+							    </div>
+
+							    <div class="group">
+								    <div class="col span_1_of_2">
+										<span><label>ASSUNTO</label></span>
+										<span>
+											<select name="userSubject" type="text" class="textbox">
+												<option value="">Selecione</option>
+												<option value="">Crítica</option>
+												<option value="">Dúvida</option>
+												<option value="">Sugestão</option>
+											</select>
+										</span>
+									</div>
+
+									<div class="col span_2_of_2">
+								    	<span><label>MELHOR HORÁRIO ENTRARMOS EM CONTATO:</label></span>
+								    	<span>
+								    		<label id="userManha">
+								    			<input id="userManha" type="checkbox" name="melhorHorario[]" value="Manhã" />
+								    			Manhã
+								    		</label>
+	
+								    		<label id="userTarde">
+								    			<input id="userTarde" type="checkbox" name="melhorHorario[]" value="Tarde" />
+								    			Tarde
+								    		</label>
+	
+								    		<label id="userNoite">
+								    			<input id="userNoite" type="checkbox" name="melhorHorario[]" value="Noite" />
+								    			Noite
+								    		</label> 
+								    	</span>
+								    </div>
 								</div>
 
 								<div>
