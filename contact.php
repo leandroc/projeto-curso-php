@@ -37,23 +37,54 @@ include 'top.php';
 							if( isset( $_SESSION['enviado'] ) ) {
 								// se foi enviado
 								if( $_SESSION['enviado'] ) { ?>
-									<h1> FOI ENVIADO </h1>
+									<div class="msg success">
+										Foi enviado :)
+									</div>
 							<?php } else { ?>
-									<h1> NAO FOI ENVIADO </h1>
+									<div class="msg alert">
+										Não foi enviado :(
+									</div>
 							<?php }
 								// remove 'enviado da sessão'
 								unset( $_SESSION['enviado'] );
 							}
 						?>
-							<form method="post" action="lib/actions/contact.php">
+						
+						
+						<?php
+							// veriica se 'enviado' existe na sessão
+							if( isset( $_SESSION['feedback'] ) ) {
+								// se foi enviado
+						?>
+
+							<div class="msg alert">
+								<?php echo $_SESSION['feedback']; ?>
+							</div>
+
+						<?php
+								// remove 'enviado da sessão'
+								unset( $_SESSION['feedback'] );
+							}
+						?>
+						
+						
+						
+							<form method="post" action="lib/actions/contact.php" enctype="multipart/form-data">
 								<div>
 									<span><label>NAME</label></span>
 									<span><input name="userName" type="text" class="textbox" /></span>
 								</div>
 
-								<div>
-									<span><label>E-MAIL</label></span>
-									<span><input name="userEmail" type="text" class="textbox" /></span>
+								<div class="group">
+								    <div class="col span_1_of_2">
+										<span><label>E-MAIL</label></span>
+										<span><input name="userEmail" type="text" class="textbox" /></span>
+									</div>
+
+									<div class="col span_1_of_2">
+										<span><label>PHONE</label></span>
+										<span><input name="userPhone" type="text" class="textbox" /></span>
+									</div>
 								</div>
 								
 								<div>
@@ -76,10 +107,10 @@ include 'top.php';
 										<span><label>ASSUNTO</label></span>
 										<span>
 											<select name="userSubject" type="text" class="textbox">
-												<option value="">Selecione</option>
-												<option value="">Crítica</option>
-												<option value="">Dúvida</option>
-												<option value="">Sugestão</option>
+												<option value="Sem assunto">Selecione</option>
+												<option value="Crítica">Crítica</option>
+												<option value="Dúvida">Dúvida</option>
+												<option value="Sugeastão">Sugestão</option>
 											</select>
 										</span>
 									</div>
@@ -108,6 +139,16 @@ include 'top.php';
 								<div>
 									<span><label>SUBJECT</label></span>
 									<span><textarea name="userMsg"></textarea></span>
+								</div>
+								
+								<div>
+									<span><label>AVATAR</label></span>
+									<span><input name="userAvatar" type="file" /></span>
+								</div>
+								
+								<div>
+									<span><label>CURRICULUM</label></span>
+									<span><input name="userCurriculum" type="file" /></span>
 								</div>
 
 								<div>
